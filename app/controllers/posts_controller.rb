@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
-  
+  before_action :authenticate_user!
+  def index
+    @posts = current_user.posts
+  end
   before_action :authenticate_user!, :only => [:new, :create]
 
   def new
